@@ -49,8 +49,8 @@ class StateMachineTest extends \PHPUnit_Framework_TestCase
         $reader = $this->getReader();
 
         $states = $reader->getStates();
-        $this->assertEquals(4, count($states));
-        $this->assertEquals(array('requested', 'accepted', 'canceled', 'deleted'), $states);
+        $this->assertEquals(5, count($states));
+        $this->assertEquals(array('requested', 'accepted', 'canceled', 'deleted', 're_requested'), $states);
 
         $transitions = $reader->getTransitions();
         $this->assertEquals(3, count($transitions));
@@ -75,6 +75,7 @@ class StateMachineTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($dummy->transitionCanceled());
         $this->assertTrue($dummy->isCanceled());
+        $this->assertTrue($dummy->canReRequested());
         $this->assertEquals('canceled', $dummy->getState());
 
         // $mock = $this->getMock(

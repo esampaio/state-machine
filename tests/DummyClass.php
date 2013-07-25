@@ -22,10 +22,10 @@ use Esampaio\StateMachine\Transition;
  * @license  MIT <http://choosealicense.com/licenses/mit/>
  * @link     http://esampaio.github.io/state-machine
  *
- * @States(states = {"requested", "accepted", "canceled", "deleted"})
+ * @States(states = {"requested", "accepted", "canceled", "deleted", "re_requested"})
  * @Transition(state = "requested", transitions = {"accepted", "canceled"})
  * @Transition(state = "accepted", transitions = {"deleted"})
- * @Transition(state = "canceled", transitions = {"deleted"})
+ * @Transition(state = "canceled", transitions = {"deleted", "re_requested"})
  */
 class DummyClass extends StateMachine
 {

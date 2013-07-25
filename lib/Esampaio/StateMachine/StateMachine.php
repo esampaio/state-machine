@@ -114,6 +114,24 @@ class StateMachine
     }
 
     /**
+     * Uncamelizes the state functions
+     *
+     * @param string $value State name to camelize
+     *
+     * @return string
+     */
+    protected function uncamelize($value)
+    {
+        preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $value, $matches);
+        $ret = $matches[0];
+        foreach ($ret as &$match) {
+            $match = ($match == strtoupper($match)) ? strtolower($match) : lcfirst($match);
+        }
+
+        return implode('_', $ret);
+    }
+
+    /**
      * Implements the StateMachine methods
      *
      * Implements 3 different methods for each state:
@@ -150,15 +168,15 @@ class StateMachine
     {
         switch(true) {
             case preg_match('/^is(?P<state>.+)/', $name, $matches):
-                $state = strtolower($matches['state']);
+                $state = $this->uncamelize($matches['state']);
                 return (in_array($state, $this->getStates()) && $this->getState() == $state);
                 break;
             case preg_match('/^can(?P<state>.+)/', $name, $matches):
-                $state = strtolower($matches['state']);
+                $state = $this->uncamelize($matches['state']);
                 return in_array($state, $this->getTransitions($this->getState()));
                 break;
             case preg_match('/^transition(?P<state>.+)/', $name, $matches):
-                $state = strtolower($matches['state']);
+                $state = $this->uncamelize($matches['state']);
                 $can = 'can' . $matches['state'];
                 if ($this->$can()) {
                     $before = 'before' . $matches['state'];
