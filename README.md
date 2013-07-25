@@ -31,7 +31,7 @@ class MyClass extends StateMachine
 
 If you are running PHP version 5.4, just use the Trait:
 ````php
-use Esampaio\StateMachine\Tratis\StateMachine;
+use Esampaio\StateMachine\Traits\StateMachine;
 
 class MyClass
 {
