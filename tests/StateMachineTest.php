@@ -15,6 +15,7 @@ use Esampaio\StateMachine\States;
 use Esampaio\StateMachine\Transition;
 use Esampaio\StateMachine\Reader;
 use Esampaio\StateMachine\Tests\DummyClass;
+use Esampaio\StateMachine\Tests\DummyClassTrait;
 
 /**
  * Class to enable StateMachine
@@ -28,6 +29,7 @@ use Esampaio\StateMachine\Tests\DummyClass;
 class StateMachineTest extends \PHPUnit_Framework_TestCase
 {
     protected $dummyClass = '\Esampaio\StateMachine\Tests\DummyClass';
+    protected $dummyClassTrait = '\Esampaio\StateMachine\Tests\DummyClassTrait';
 
     /**
      * Returns the Annotation Reader for the DummyClass
@@ -67,6 +69,30 @@ class StateMachineTest extends \PHPUnit_Framework_TestCase
     {
         $dummy = new $this->dummyClass;
 
+        $this->performTests($dummy);
+    }
+
+    /**
+     * Test the DummyClass annotations using Trait
+     *
+     * @return void
+     */
+    public function testStateMachineTrait()
+    {
+        $dummy = new $this->dummyClassTrait;
+
+        $this->performTests($dummy);
+    }
+
+    /**
+     * Performs the class test suite on the passed object
+     *
+     * @param object $dummy Object to perform the test suite
+     *
+     * @return void
+     */
+    public function performTests($dummy)
+    {
         $this->assertEquals('requested', $dummy->getState());
         $this->assertTrue($dummy->isRequested());
         $this->assertTrue($dummy->canAccepted());
