@@ -30,17 +30,17 @@ class StateMachine
     /**
      * @var \Esampaio\StateMachine\Reader $_reader
      */
-    private $_reader;
+    protected $_reader;
 
     /**
      * @var array $_states
      */
-    private $_states;
+    protected $_states;
 
     /**
      * @var array $_transitions
      */
-    private $_transitions;
+    protected $_transitions;
 
     /**
      * Set state
