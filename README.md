@@ -7,7 +7,9 @@ A dead simple State Machine PHP package.
 To install, just add this to your composer.json:
 
 ````json
-  "esampaio/state-machine":"master"
+"require": {
+    "esampaio/state-machine":"master"
+}
 ````
 
 ## Usage
