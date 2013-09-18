@@ -2,7 +2,7 @@
     "name": "esampaio/state-machine",
     "type": "library",
     "description": "State Machine library for PHP projects",
-    "keywords": ["state", "machine", "statemachine", "annotations"],
+    "keywords": ["state", "machine", "statemachine", "state-machine", "annotations"],
     "homepage": "http://esampaio.github.io/state-machine",
     "license": "MIT",
     "authors": [
