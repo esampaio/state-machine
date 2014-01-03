@@ -44,7 +44,7 @@ class Reader
     }
 
     /**
-     * Returns the passible StateMachine states
+     * Returns the possible StateMachine states
      *
      * @return false|array
      */
@@ -53,7 +53,7 @@ class Reader
         $annotation = $this->_reader->getClassAnnotation($this->_class, $this->_statesClass);
 
         if (null == $annotation) {
-            return false;
+            return array();
         }
 
         return $annotation->states;

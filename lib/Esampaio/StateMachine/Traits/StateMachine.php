@@ -93,7 +93,7 @@ trait StateMachine
      */
     public function getTransitions($state)
     {
-        if (!$this->_transitions) {
+        if (!$this->_transitions || empty($this->_transitions)) {
             $this->_transitions = $this->getReader()->getTransitions();
         }
 
@@ -108,8 +108,11 @@ trait StateMachine
     public function getReader()
     {
         if (!$this->_reader) {
-            $this->_reader = new Reader(get_class($this));
+            $class = get_class($this);
+            $class = preg_match('/^Proxies/', $class) ? substr($class, 15) : $class;
+            $this->_reader = new Reader($class);
         }
+
         return $this->_reader;
     }
 
