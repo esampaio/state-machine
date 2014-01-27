@@ -191,8 +191,6 @@ class StateMachine
                 }
                 return false;
                 break;
-            case 'default':
-                throw new MemberAccessException('Method ' . $name . ' does not exists!');
         }
     }
 }
